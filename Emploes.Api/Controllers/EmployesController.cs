@@ -26,7 +26,20 @@ namespace Emploes.Api.Controllers
             _employeRepository = new EmployeRepository(connectionString);
             _logger = logger;
         }
-
+        
+        [HttpPost("/create/")]
+        public int Create([FromBody] Employe employe)
+        {
+            return _employeRepository.Create(employe);
+        }
+        
+        [HttpDelete("/delete/{id:int}/")]
+        public IActionResult Delete(int id)
+        {
+            _employeRepository.Delete(id);
+            return Ok();
+        }
+        
         [HttpGet("/get/all/by-company/{companyId:int}/")]
         public IEnumerable<Employe> GetByCompany(int companyId)
         {
@@ -39,19 +52,6 @@ namespace Emploes.Api.Controllers
             return _employeRepository.GetAllEmployesByDepartment(departmentId);
         }
 
-        [HttpDelete("/delete/{id:int}/")]
-        public IActionResult Delete(int id)
-        {
-            _employeRepository.Delete(id);
-            return Ok();
-        }
-
-        [HttpPost("/create/")]
-        public int Create([FromBody] Employe employe)
-        {
-            return _employeRepository.Create(employe);
-        }
-        
         [HttpPut("/update/{id:int}")]
         public IActionResult  Update(int id,[FromBody] Employe employe)
         {
