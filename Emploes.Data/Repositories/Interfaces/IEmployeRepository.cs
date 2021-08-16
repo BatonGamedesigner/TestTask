@@ -8,7 +8,6 @@ namespace Emploes.Data.Repositories.Interfaces
         int Create(Employe employe);
         void Delete(int id);
         Employe Get(int id);
-        IEnumerable<Employe> GetAllEmployes();
         IEnumerable<Employe> GetAllEmployesByCompany(int CompanyId);
         IEnumerable<Employe> GetAllEmployesByDepartment(int DepartmentId);
         void Update(Employe employe);
