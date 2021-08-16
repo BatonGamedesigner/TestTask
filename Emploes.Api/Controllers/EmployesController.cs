@@ -27,12 +27,6 @@ namespace Emploes.Api.Controllers
             _logger = logger;
         }
 
-        [HttpGet("/get/all/")]
-        public IEnumerable<Employe> Get()
-        {
-            return _employeRepository.GetAllEmployes();
-        }
-
         [HttpGet("/get/all/by-company/{companyId:int}/")]
         public IEnumerable<Employe> GetByCompany(int companyId)
         {
