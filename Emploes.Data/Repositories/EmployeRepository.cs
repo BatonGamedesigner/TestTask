@@ -17,19 +17,6 @@ namespace Emploes.Data.Repositories
             _connectionString = connectionString;
         }
 
-        public IEnumerable<Employe> GetAllEmployes()
-        {
-            using IDbConnection database = new SqlConnection(_connectionString);
-            var sqlQuery = @"SELECT empl.Id, empl.Name, empl.Surname, empl.Phone, empl.CompanyId , pass.Id as PassId, pass.Type, pass.Number, empl.DepartmentId, dep.Name, dep.Phone  FROM Employe as empl INNER JOIN Department AS dep on dep.id = empl.DepartmentId INNER JOIN Passport AS pass on pass.UserId = empl.Id";
-
-            return database.Query<Employe, Passport, Department, Employe>(sqlQuery, (empl, pass, dep) =>
-            {
-                empl.Passport = pass;
-                empl.Department = dep;
-                return empl;
-            }, splitOn: "PassId,DepartmentId").ToList();
-        }
-
         public IEnumerable<Employe> GetAllEmployesByCompany(int CompanyId)
         {
             using IDbConnection database = new SqlConnection(_connectionString);
