@@ -56,5 +56,12 @@ namespace Emploes.Api.Controllers
         {
             return _employeRepository.Create(employe);
         }
+        
+        [HttpPut("/update/{id:int}")]
+        public void Create(int id,[FromBody] Employe employe)
+        {
+            employe.Id = id;
+            _employeRepository.Update(employe);
+        }
     }
 }
