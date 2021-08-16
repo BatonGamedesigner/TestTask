@@ -1,0 +1,14 @@
+C:\Users\invak\source\repos\Emploes\Emploes.Data\bin\Debug\net5.0\Emploes.Data.deps.json
+C:\Users\invak\source\repos\Emploes\Emploes.Data\bin\Debug\net5.0\Emploes.Data.dll
+C:\Users\invak\source\repos\Emploes\Emploes.Data\bin\Debug\net5.0\ref\Emploes.Data.dll
+C:\Users\invak\source\repos\Emploes\Emploes.Data\bin\Debug\net5.0\Emploes.Data.pdb
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.AssemblyInfoInputs.cache
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.AssemblyInfo.cs
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.csproj.CoreCompileInputs.cache
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.dll
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\ref\Emploes.Data.dll
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.pdb
+C:\Users\invak\source\repos\Emploes\Emploes.Data\obj\Debug\net5.0\Emploes.Data.csproj.AssemblyReference.cache
+C:\Users\invak\source\repos\Emploes\Emploes.Data\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\invak\source\repos\Emploes\Emploes.Data\bin\Debug\net5.0\appsettings.json
