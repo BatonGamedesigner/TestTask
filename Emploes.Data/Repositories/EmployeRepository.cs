@@ -73,7 +73,7 @@ namespace Emploes.Data.Repositories
             using IDbConnection database = new SqlConnection(_connectionString);
             var sqlQuery = @"SELECT id FROM Department WHERE Name = @Name AND Phone = @Phone";
             var dataDepartment = employe.Department;
-            var departmentId = database.Query<int>(sqlQuery, param: new { dataDepartment.Name, dataDepartment.Phone }).FirstOrDefault();
+            var departmentId = database.Query<int>(sqlQuery, param: dataDepartment).FirstOrDefault();
             if (departmentId == 0)
             {
                 sqlQuery = @"INSERT INTO Department (Name, Phone) VALUES(@Name, @Phone); SELECT CAST(SCOPE_IDENTITY() as INTEGER)";
@@ -86,12 +86,23 @@ namespace Emploes.Data.Repositories
             _ = database.Query<int>(sqlQuery, new { passport.Type, passport.Number, userId }).FirstOrDefault();
             return userId;
         }
-
+        
         public void Update(Employe employe)
         {
             using IDbConnection database = new SqlConnection(_connectionString);
-            var sqlQuery = "UPDATE Books SET Name = @Name, Author = @Author, PageCount = @PageCount WHERE Id = @Id";
-            database.Execute(sqlQuery, employe);
+            var sqlQuery = @"SELECT id FROM Department WHERE Name = @Name AND Phone = @Phone";
+            var dataDepartment = employe.Department;
+            var departmentId = database.Query<int>(sqlQuery, param: dataDepartment).FirstOrDefault();
+            if (departmentId == 0)
+            {
+                sqlQuery = @"INSERT INTO Department (Name, Phone) VALUES(@Name, @Phone); SELECT CAST(SCOPE_IDENTITY() as INTEGER)";
+                departmentId = database.Query<int>(sqlQuery, param: dataDepartment).First();
+            }
+            sqlQuery = "UPDATE Employe SET Name = @Name, Surname = @Surname, Phone = @Phone, CompanyId = @CompanyId, DepartmentId = @departmentId WHERE Id = @Id";
+            database.Execute(sqlQuery, param: new {employe.Id, employe.Name, employe.Surname, employe.Phone, employe.CompanyId, departmentId});
+            sqlQuery = "UPDATE Passport SET Type = @Type, Number = @Number WHERE UserId = @userId";
+            var passport = employe.Passport;
+            database.Execute(sqlQuery,  new { passport.Type, passport.Number, userId = employe.Id });
         }
         
         public void Delete(int id)
