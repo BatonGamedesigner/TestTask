@@ -22,7 +22,7 @@ namespace Emploes.Api.Controllers
 
         public EmployesController(ILogger<EmployesController> logger, IOptions<ConnectionConfig> connectionConfig)
         {
-            string connectionString = connectionConfig.Value.DapperConnection;
+            var connectionString = connectionConfig.Value.DapperConnection;
             _employeRepository = new EmployeRepository(connectionString);
             _logger = logger;
         }
@@ -33,22 +33,23 @@ namespace Emploes.Api.Controllers
             return _employeRepository.GetAllEmployes();
         }
 
-        [HttpGet("/get/all/by-company/{CompanyId:int}/")]
-        public IEnumerable<Employe> GetByCompany(int CompanyId)
+        [HttpGet("/get/all/by-company/{companyId:int}/")]
+        public IEnumerable<Employe> GetByCompany(int companyId)
         {
-            return _employeRepository.GetAllEmployesByCompany(CompanyId);
+            return _employeRepository.GetAllEmployesByCompany(companyId);
         }
 
-        [HttpGet("/get/all/by-department/{DepartmentId:int}/")]
-        public IEnumerable<Employe> GetByDepartment(int DepartmentId)
+        [HttpGet("/get/all/by-department/{departmentId:int}/")]
+        public IEnumerable<Employe> GetByDepartment(int departmentId)
         {
-            return _employeRepository.GetAllEmployesByDepartment(DepartmentId);
+            return _employeRepository.GetAllEmployesByDepartment(departmentId);
         }
 
         [HttpDelete("/delete/{id:int}/")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             _employeRepository.Delete(id);
+            return Ok();
         }
 
         [HttpPost("/create/")]
@@ -58,10 +59,11 @@ namespace Emploes.Api.Controllers
         }
         
         [HttpPut("/update/{id:int}")]
-        public void Create(int id,[FromBody] Employe employe)
+        public IActionResult  Update(int id,[FromBody] Employe employe)
         {
             employe.Id = id;
             _employeRepository.Update(employe);
+            return Ok();
         }
     }
 }
